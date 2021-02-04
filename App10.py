@@ -1,0 +1,268 @@
+
+import csv
+
+with open('orders.csv', mode='w') as file:
+    fieldnames = ['customer_name', 'customer_address', 'customer_phone','courier','status']
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+    writer.writeheader()
+    writer.writerow({
+        "customer_name": "John",
+        "customer_address": "Unit 2, 12 Main Street, LONDON, WH1 2ER",
+        "customer_phone": "0789887334",
+        "courier": 2,
+        "status": "preparing"
+    })
+
+
+products_file = '/Users/lauraherreragarcia/PycharmProjects/pythonProjectGeneration/couriers.txt'
+couriers_file = '/Users/lauraherreragarcia/PycharmProjects/pythonProjectGeneration/couriers.txt'
+orders_file = '/Users/lauraherreragarcia/PycharmProjects/pythonProjectGeneration/orders.txt'
+
+products_list = []
+courier_list = []
+order_list = []
+
+
+def write_products_file():
+    with open('products.txt', 'w') as file:
+        for name in products_list:
+            file.write(name + '\n')
+
+
+def read_products_file():
+    with open('products.txt', 'r') as file:
+        for line in file:
+            line = line.strip()
+            products_list.append(line)
+
+
+def print_products_list():
+    print("products")
+    print(products_list)
+    write_products_file()
+
+def write_couriers_file():
+    with open('couriers.txt', 'w') as file:
+        for name in courier_list:
+            file.write(name + '\n')
+
+
+def read_couriers_file():
+    with open('couriers.txt', 'r') as file:
+        for line in file:
+            line = line.strip()
+            courier_list.append(line)
+
+
+def print_couriers_list():
+    print("couriers")
+    print(courier_list)
+    write_couriers_file()
+
+def write_orders_file():
+    with open('orders.txt', 'w') as file:
+        for name in order_list:
+            file.write(name + '\n')
+
+
+def read_orders_file():
+    with open('orders.txt', 'r') as file:
+        for line in file:
+            line = line.strip()
+            order_list.append(line)
+
+
+def print_orders_list():
+    print("orders")
+    print(order_list)
+    write_orders_file()
+
+
+def product_available():
+    print()
+    print("•••DRINKS LIST•••")
+    for i in products_list:
+        print("* " + i)
+
+
+
+def create_product():
+    item = input("Enter the product you wish to add: ")
+    products_list.append(item)
+    print(item + " has been added to the basket.")
+
+
+def update_product_list():
+    try:
+        item_change_name = print("Choose the product you want to changed:")
+        products_list.remove(input())
+        print("Please enter the new name:")
+        products_list.append(input())
+    except:
+        print("That was not in the List")
+        update_product_list()
+    product_options()
+
+
+def remove_product_list():
+    item = input("Which item would you like to remove from the basket: ")
+    products_list.remove(item)
+    print(item + " has been removed from the basket.")
+    print(products_list)
+
+
+def courier_available():
+    print()
+    print("•••COURIERS•••")
+    for i in courier_list:
+        print("* " + i)
+
+
+def create_courier():
+    item = input("Enter the courier you wish to add: ")
+    courier_list.append(item)
+    print(item + " has been added.")
+
+
+def update_courier_list():
+    try:
+        item_change_name = print("Choose the courier you want to update:")
+        courier_list.remove(input())
+        print("Please enter the new courier:")
+        courier_list.append(input())
+    except:
+        print("That was not in the List")
+        update_courier_list()
+    courier_options()
+
+
+def remove_courier_list():
+    item = input("Which courier would you like to remove: ")
+    courier_list.remove(item)
+    print(item + " has been removed from the courier list.")
+    print(courier_list)
+
+
+def order_available():
+    print()
+    print("•••ORDERS•••")
+    for i in order_list:
+        print("* " + i)
+
+
+def create_order():
+    item = input("Enter the name of the customer: ")  #?
+    item = input("Enter the address of the customer: ")
+    item = input("Enter the phone of the customer: ")
+    order_list.append(item)
+    print(item + " has been added.")
+
+
+
+def update_order_list():
+    try:
+        item_change_name = print("Choose the order you want to update:")
+        order_list.remove(input())
+        print("Please enter the new order:")
+        order_list.append(input())
+    except:
+        print("That was not in the List")
+        update_order_list()
+    order_options()
+
+
+def remove_order_list():
+    item = input("Which order would you like to remove: ")
+    order_list.remove(item)
+    print(item + " has been removed from the order list.")
+    print(order_list)
+
+
+def product_options():
+    choice = 1
+    while choice != 0:
+        choice = input(
+            "\nEnter 0 to return to main menu\nEnter 1 to show product menu.\nEnter 2 Add a product.\nEnter 3 to update product\nEnter 4 to delete product")
+        if choice == '1':
+            product_available()
+        elif choice == '2':
+            create_product()
+        elif choice == '3':
+            update_product_list()
+        elif choice == '4':
+            remove_product_list()
+        elif choice == '0':
+            print("\nThanks for visiting us. See you soon!.\n")
+            return
+        else:
+            print("\nI don't understand that choice, please try again.\n")
+
+
+def courier_options():
+    choice = 1
+    while choice != 0:
+        choice = input(
+            "\nEnter 0 to return to main menu\nEnter 1 to show courier menu.\nEnter 2 Choose a new courier.\nEnter 3 to update courier\nEnter 4 to delete courier")
+        if choice == '1':
+            courier_available()
+        elif choice == '2':
+            create_courier()
+        elif choice == '3':
+            update_courier_list()
+        elif choice == '4':
+            remove_courier_list()
+        elif choice == '0':
+            print("\nThanks for visiting us. See you soon!.\n")
+            return
+        else:
+            print("\nI don't understand that choice, please try again.\n")
+
+def order_options():
+    choice = 1
+    while choice != 0:
+        choice = input(
+            "\nEnter 0 to return to main menu\nEnter 1 to show orders menu.\nEnter 2 create a new order.\nEnter 3 to update order status\nEnter 4 to delete order")
+        if choice == '1':
+            order_available()
+        elif choice == '2':
+            create_order()
+        elif choice == '3':
+            update_order_list()
+        elif choice == '4':
+            remove_order_list()
+        elif choice == '0':
+            print("\nThanks for visiting us. See you soon!.\n")
+            return
+        else:
+            print("\nI don't understand that choice, please try again.\n")
+
+
+def main_menu():
+    main_menu = 1
+    while main_menu != 0:
+        main_menu = int(input(
+            "*** WELCOME TO THE BEST COFFEE SHOP IN YOUR AREA ***\nMain Menu\nSelect the following:\n0: Exit\n1: View Product Options\n2: View Courier Options\n3: View order Options"))
+        if main_menu == 1:
+            product_options()
+        elif main_menu == 2:
+            courier_options()
+        elif main_menu == 3:
+            order_options()
+        elif main_menu == 0:
+            write_products_file()
+            write_couriers_file()
+            write_orders_file()
+            read_products_file()
+            read_couriers_file()
+            read_orders_file()
+            print_products_list()
+            print_couriers_list()
+            print_orders_list()
+
+
+            exit("Thank you")
+
+main_menu()
+# product_options()
+# courier_options()
