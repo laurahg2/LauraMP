@@ -206,29 +206,6 @@ def update_order_status():
 # print_orders_list
 
 
-# def order_tracker(request):
-#     if request.method=="POST":
-#         orderId = request.POST.get('orderId', '')
-#         try:
-#             order=Order.objects.filter(pk=orderId)
-#
-#             if len(order)>0:
-#                 update = Order.objects.filter(pk=orderId)
-#                 updates = []
-#                 for order in update:
-#                     # change order status to scheduled
-#                     if order.status == 'processing':
-#                         order.status = 'scheduled'
-#                         order.save()
-#                     updates.append({'status' : order.status})
-#                     response = json.dumps(updates)
-#                     return HttpResponse(response)
-#             else:
-#                 return HttpResponse('{}')
-#         except Exception as e:
-#             return HttpResponse('{}')
-#     return render(request,"tracker.html")
-
 def update_order_list():
     # order_dictionary = {}
     name = input("Enter the name of the customer: ")
